@@ -47,10 +47,27 @@ Route::get('test123','TestController@index');
 
 Route::get('customer/{id}',function($id){
     $customer = App\Customer::find($id);
-    echo 'Hello my name is '.$customer->name; 
+    echo 'Hello my name is '.$customer->name."<br/>";
+
+    $orders = $customer->orders;
+
+    foreach($orders as $order){
+        echo $order->name . "<br/>";
+    } 
 });
 
 Route::get('get_customer',function(){
     $customer = App\Customer::where('name','=','bob')->first();
     echo $customer->name;
+});
+
+Route::get('orders',function(){
+    $orders = App\Order::all();
+    foreach($orders as $order){
+        // $customer = App\Customer::find($order->customer_id);
+        // echo $order->name . "order by" . $customer->name. "<br/>";
+
+        echo $order->name . "order by" . $order->customer->name. "<br/>";
+
+    }
 });
