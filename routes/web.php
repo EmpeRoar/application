@@ -16,7 +16,12 @@
 // });
 
 Route::get('/', function () {
-    echo "Laravel Hello World";
+    if(Auth::guest()){
+        return Redirect::to('login');
+    }else{
+        echo "Laravel Hello World";
+    }
+    
 });
 
 // create an item 
@@ -79,3 +84,6 @@ Route::get('myblade',function(){
     );
     return view('myblade',$data);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
