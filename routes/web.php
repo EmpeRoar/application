@@ -80,3 +80,12 @@ Route::get('mypage',function(){
     );
     return view('mypage',$data);
 });
+
+Route::get('myblade',function(){
+
+    $customers = App\Customer::all();
+    $data = array(
+        'customers' => $customers
+    );
+    return view('myblade',$data);
+});
