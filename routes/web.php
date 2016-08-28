@@ -71,3 +71,12 @@ Route::get('orders',function(){
 
     }
 });
+
+Route::get('mypage',function(){
+
+    $customers = App\Customer::all();
+    $data = array(
+        'customers' => $customers
+    );
+    return view('mypage',$data);
+});
